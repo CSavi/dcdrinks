@@ -1,0 +1,5 @@
+require "nokogiri"
+require_relative "./dcdrinks/version"
+require_relative "./dcdrinks/cli"
+#require_relative "./dcdrinks/scraper"
+require_relative "./dcdrinks/venue"
