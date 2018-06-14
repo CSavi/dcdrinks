@@ -15,12 +15,12 @@ class Dcdrinks::CLI
   def list_days
     input = nil
     while input != "exit"
-      puts "Enter the number of the day for a list of happy hours or type list to see the happy hours or type exit."
-      input = get.strip.downcase
-      
+      puts "Enter the number of the day for a list of happy hours or type exit."
+      input = gets.strip.downcase
+
       if input.to_i > 0
         the_venue = @venue[input.to_i - 1]
-        puts "#{ven.name} - #{ven.location} - #{ven.time} - #{ven.feature} - #{ven.url}"}"
+        puts "#{ven.name} - #{ven.location} - #{ven.time} - #{ven.feature} - #{ven.url}"
       elsif input == "list"
         list_venues
       else
