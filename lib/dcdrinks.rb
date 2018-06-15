@@ -1,3 +1,4 @@
+require "open-uri"
 require "nokogiri"
 require_relative "./dcdrinks/version"
 require_relative "./dcdrinks/cli"
