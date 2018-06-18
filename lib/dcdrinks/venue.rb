@@ -2,6 +2,8 @@ class Dcdrinks::Venue
 
   attr_accessor :name, :location, :time, :feature, :url
 
+  @@all = []
+
 
   def self.day_selector(selected_day)
     @venue_day = selected_day
@@ -22,12 +24,11 @@ class Dcdrinks::Venue
 
   def self.scrape_dchappyhours
     doc = Nokogiri::HTML(open("https://www.dchappyhours.com/#{@venue_day}"))  #this changes based off selected day
-    binding.pry
-    name = doc.search("h2.card-title").text
-    location = 
+    name = doc.css("h2.card-title").text
 
+    location = doc.css("a").attribute("href").text
   end
 
-  def self.new
-  end
+
+
 end
