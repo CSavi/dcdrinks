@@ -24,7 +24,7 @@ class Dcdrinks::CLI
       input = gets.strip.downcase
 
       if input.to_i > 0
-        the_venue = @venues_for_day[input.to_i - 1]
+        the_venue = day_venues[input.to_i - 1]
         puts "#{ven.name} - #{ven.location} - #{ven.time} - #{ven.feature} - #{ven.url}"
       elsif input == "exit"
         break
