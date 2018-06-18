@@ -2,33 +2,36 @@ class Dcdrinks::Venue
 
   attr_accessor :name, :location, :time, :feature, :url
 
-  @@all = []
+  @@all_venues = []
 
 
-  def self.day_selector(selected_day)
-    @venue_day = selected_day
+  def initialize(name, location, time, feature, url)
+    @name = name
+    @location = location
+    @time = time
+    @feature = feature
+    @url = url
+    @@all_venues << self
   end
 
-  def self.scrape_venues  #scrapes list of venues
-     venue_array = []
-     venue_array << self.scrape_dchappyhours
-    # doc = Nokogiri::HTML(open(https://www.dchappyhours.com/index.phtml?selectarea=&selectday=Thursday&timerange=&metroline=&metrostation=&selectrating=&showall=No&showall=Yes&sortby=Name&resultsperpage=25)) #needs to change based off of selected day
-    # filter = doc.search('filters')
-    # venue_links = filter.search() #grab links within filter
+  def self.all
+    @@all_venues
+  end
 
-    #Extract data or properties
-    #Instantiate a happy hour
-    #return array of happy hours
-    venue_array
+  def self.day_selector(selected_day)
+    @venues_for_day = selected_day
   end
 
   def self.scrape_dchappyhours
-    doc = Nokogiri::HTML(open("https://www.dchappyhours.com/#{@venue_day}"))  #this changes based off selected day
-    name = doc.css("h2.card-title").text
+    doc = Nokogiri::HTML(open("https://www.dchappyhours.com/#{@venues_for_day}"))  #this changes based off selected day
+    venue = doc.css("h2.card-title").text
+    venue.collect do |ven|
+      name = ven.search("").text
+      location = ven.search("a").attribute("href").text
+      time = ven.search().text
+      feature = ven.search().text
+      url = ven.search().text
 
-    location = doc.css("a").attribute("href").text
+  
   end
-
-
-
 end
