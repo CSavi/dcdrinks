@@ -22,10 +22,10 @@ class Dcdrinks::CLI
     input = nil
     while input != "exit"
     #  puts "Enter the number of the day for a list of happy hours or type exit."
-      input = gets.strip.downcase
+      input = gets.strip.downcase  #getting input here
 
-      if input.to_i > 0
-        the_happyhour = happyhour_day[input.to_i]
+      if input.to_i > 0    #if input is an integer and greater than 0, puts
+        puts happyhour_day[input.to_i]
       #  puts "#{the_happyhour.name} - #{the_happyhour.location} - #{the_happyhour.time} - #{the_happyhour.feature}"
       elsif input == "exit"
         break
