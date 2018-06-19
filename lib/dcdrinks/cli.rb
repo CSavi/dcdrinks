@@ -8,6 +8,7 @@ class Dcdrinks::CLI
   end
 
   def list_days
+    puts "Enter the number of the day for a list of happy hours or type exit."
     puts "********** Monday(1) **********"
     puts "********** Tuesday(2) **********"
     puts "********** Wednesday(3) **********"
@@ -20,7 +21,7 @@ class Dcdrinks::CLI
   def list_happyhours
     input = nil
     while input != "exit"
-      puts "Enter the number of the day for a list of happy hours or type exit."
+    #  puts "Enter the number of the day for a list of happy hours or type exit."
       input = gets.strip.downcase
 
       if input.to_i > 0
@@ -36,7 +37,7 @@ class Dcdrinks::CLI
 
   def happyhour_day
     @happyhour_for_day = Dcdrinks::HappyHour.scrape_dchappyhours
-    @happyhour_for_day.each.with_index(1) {|ven, i| puts "#{i}. #{hh.name} - #{hh.location} - #{hh.time} - #{hh.feature} - #{hh.url}"}
+    @happyhour_for_day.each.with_index(1) {|hh, i| puts "#{i}. #{hh.name} - #{hh.location} - #{hh.time} - #{hh.feature} - #{hh.url}"}
   end
 
   def goodbye
