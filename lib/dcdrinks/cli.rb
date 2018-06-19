@@ -25,8 +25,8 @@ class Dcdrinks::CLI
       input = gets.strip.downcase
 
       if input.to_i > 0
-        the_happyhour = happyhour_day[input.to_i - 1]
-        puts "#{hh.name} - #{hh.location} - #{hh.time} - #{hh.feature} - #{hh.url}"
+        the_happyhour = happyhour_day[input.to_i]
+      #  puts "#{the_happyhour.name} - #{the_happyhour.location} - #{the_happyhour.time} - #{the_happyhour.feature}"
       elsif input == "exit"
         break
       else
@@ -37,7 +37,7 @@ class Dcdrinks::CLI
 
   def happyhour_day
     @happyhour_for_day = Dcdrinks::HappyHour.scrape_dchappyhours
-    @happyhour_for_day.each.with_index(1) {|hh, i| puts "#{i}. #{hh.name} - #{hh.location} - #{hh.time} - #{hh.feature} - #{hh.url}"}
+    @happyhour_for_day.each.with_index(1) {|hh, i| puts "#{i}. #{hh.name} - #{hh.location} - #{hh.time} - #{hh.feature}"}
   end
 
   def goodbye
