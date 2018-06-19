@@ -31,7 +31,7 @@ class Dcdrinks::HappyHour
       happyhour_hash = {
         :name => details.css("h2.card-title").text  #"h2.card-title a "
         :location => details.css("p.card-text").text
-        :time => details.css("p.card-text").text #"p.card-text span[1]"
+        :time => details.css("p.card-text").text #"p.card-text span[1]"    #how to iterate the values for location, time, feature 
         :feature => details.css("p.card-text span.hhlistingtext").text
       }
       happyhour_array << happyhour_hash
@@ -40,12 +40,12 @@ class Dcdrinks::HappyHour
     #happyhour = Dcdrinks::HappyHour.new  #create happyhour object
   end
 
-  def self.scrape_individual_happyhour(weekday_url = https://www.dchappyhours.com/bussinfo.phtml?buss=634&uname=1331+Bar+%26+Lounge)
-    individual_happyhour_hash = {}
-    doc = Nokokgiri::HTML(open(weekday_url))
-    details = doc.css("")
-      details.each do |d|
-        sd = d.
+  # def self.scrape_individual_happyhour(weekday_url = https://www.dchappyhours.com/bussinfo.phtml?buss=634&uname=1331+Bar+%26+Lounge)
+  #   individual_happyhour_hash = {}
+  #   doc = Nokokgiri::HTML(open(weekday_url))
+  #   details = doc.css("")
+  #     details.each do |d|
+  #       sd = d.
 end
 
 
