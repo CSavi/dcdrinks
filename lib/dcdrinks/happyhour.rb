@@ -1,8 +1,8 @@
-class Dcdrinks::Venue
+class Dcdrinks::HappyHour
 
   attr_accessor :name, :location, :day, :time, :feature, :url
 
-  @@all_venues = []
+  @@all = []
 
 
   def initialize(name, location, time, feature, url)
@@ -15,7 +15,7 @@ class Dcdrinks::Venue
   end
 
   def self.all
-    @@all_venues
+    @@all
   end
 
   def self.day_selector(selected_day)
@@ -24,19 +24,19 @@ class Dcdrinks::Venue
 
   def self.scrape_dchappyhours
     doc = Nokogiri::HTML(open("https://www.dchappyhours.com/#{@venues_for_day}"))  #this changes based off selected day
-    venue = doc.css("h2.card-title").text
+    happyhour = doc.css("h2.card-title").text
     binding.pry
     #search through venues for happyhour text
     #if includes happyhour text
       #scrape new page (Nokokgiri:HTML(open))
       #create happyhour objects from the table
         #store details: location, day, times
-    venue.collect do |ven|
-      name = ven.search("").text
-      location = ven.search("a").attribute("href").text
-      time = ven.search().text
-      feature = ven.search().text
-      url = ven.search().text
+    happyhour.collect do |hh|
+      name = hh.search("").text
+      location = hh.search("a").attribute("href").text
+      time = hh.search().text
+      feature = hh.search().text
+      url = hh.search().text
    end
   end
 end
