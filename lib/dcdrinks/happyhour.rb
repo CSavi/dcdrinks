@@ -21,7 +21,7 @@ class Dcdrinks::HappyHour
   # day_1.name = "Monday"
   # day_1.url = "https://www.dchappyhours.com/index.phtml?selectarea=&selectday=Monday"
 
-
+  #scrape dchappyhours.com and then return happyhours based on that data
   def self.scrape_dchappyhours  # => should i add url arg here?
     happyhour_array = []
 
@@ -32,10 +32,11 @@ class Dcdrinks::HappyHour
       if details.css("p.card-text").text.include?("Happy Hour")
 
         happyhour_hash = {
-          :name => details.css("h2.card-title").text,  #"h2.card-title a "
-          :location => details.css("p.card-text").text,
-          :time => details.css("p.card-text").text, #"p.card-text span[1]"    #how to iterate the values for location, time, feature
-          :feature => details.css("p.card-text span.hhlistingtext").text
+          :name => details.css("h2.card-title").text.strip,
+          :location => details.css("p.card-text").text.strip,
+          binding.pry
+          :time => details.css("p.card-text").text.strip, #"p.card-text span[1]"    #how to iterate the values for location, time, feature
+          :feature => details.css("p.card-text span.hhlistingtext").text.strip
         }
         happyhour_array << happyhour_hash
       end
@@ -51,9 +52,3 @@ class Dcdrinks::HappyHour
   #     details.each do |d|
   #       sd = d.
 end
-
-
-    #search through venues for happyhour text
-      #scrape new page (Nokokgiri:HTML(open))
-      #create happyhour objects from the table
-        #store details: location, day, times

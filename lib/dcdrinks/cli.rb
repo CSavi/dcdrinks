@@ -21,12 +21,11 @@ class Dcdrinks::CLI
   def list_happyhours
     input = nil
     while input != "exit"
-    #  puts "Enter the number of the day for a list of happy hours or type exit."
-      input = gets.strip.downcase  #getting input here
+      input = gets.strip.downcase
 
-      if input.to_i > 0    #if input is an integer and greater than 0, puts
-        @the_happyhour = happyhour_day[input.to_i] #set variable equal to output to scraper; set that to the_happyhour
-        puts "#{@the_happyhour[:name]} - #{@the_happyhour[:location]} - #{@the_happyhour[:time]} - #{@the_happyhour[:feature]}"
+      if input.to_i > 0
+        the_happyhour = happyhour_day[input.to_i - 1] #set variable equal to output to scraper; set that to the_happyhour; @the_happyhour
+        puts "#{the_happyhour[:name]} - #{the_happyhour[:location]} - #{the_happyhour[:time]} - #{the_happyhour[:feature]}"
       elsif input == "exit"
         break
       else
@@ -37,7 +36,7 @@ class Dcdrinks::CLI
 
   def happyhour_day
     @happyhour_for_day = Dcdrinks::HappyHour.scrape_dchappyhours
-  #  @happyhour_for_day.each.with_index(1) {|hh, i| puts "#{i}. #{hh[:name]} - #{hh[:location]} - #{hh[:time]} - #{hh[:feature]}"}
+    @happyhour_for_day.each.with_index(1) {|hh, i| puts "#{i}. #{hh[:name]} - #{hh[:location].strip} - #{hh[:time].strip} - #{hh[:feature]}"}
   end
 
   def goodbye
