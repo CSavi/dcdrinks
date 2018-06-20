@@ -15,21 +15,17 @@ class Dcdrinks::HappyHour
   ]
 
 
-  # def self.day_selector(selected_day) # 1-7
-  #   @happyhours_for_day = selected_day
-  #   # OR scrape =>  doc = Nokogiri::HTML(open())
-  #   # day = doc.css("div.row select option value")
-  # end
-  #
-  # day_1 = self.new
-  # day_1.name = "Monday"
-  # day_1.url = "https://www.dchappyhours.com/index.phtml?selectarea=&selectday=Monday"
+  def self.day_selector(selected_day) # 1-7
+    @happyhours_for_day = selected_day
+  binding.pry
+  end
+
 
   #scrape dchappyhours.com and then return happyhours based on that data
   def self.scrape_dchappyhours  # => should i add url arg here?
     happyhour_array = []
 
-    doc = Nokogiri::HTML(open("https://www.dchappyhours.com/#{@happyhour_for_day}"))  #this changes based off selected day
+    doc = Nokogiri::HTML(open("https://www.dchappyhours.com/index.phtml?selectarea=&selectday=/#{@happyhour_for_day}"))  #this changes based off selected day
     happyhours = doc.css(".card-block")
 
     happyhours.collect do |details|
