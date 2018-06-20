@@ -53,9 +53,6 @@ class Dcdrinks::CLI
     @happyhour_for_day.each.with_index(1) {|hh, i| puts "#{i}. #{hh[:name]} - #{hh[:location].strip} - #{hh[:time].strip} - #{hh[:feature]}"}
   end
 
-  def self.day_selector(selected_day)
-
-
   def goodbye
     puts "Thank you for using DCDrinks! See you next time!"
   end
