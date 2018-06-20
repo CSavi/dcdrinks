@@ -3,7 +3,7 @@ class Dcdrinks::HappyHour
   attr_accessor :name, :location, :time, :feature #:day?
 #  BASE_PATH = "./dchappyhours.com/index.phtml?selectarea=&selectday"  => creates method for days' url?
 
-  def initialize(name=nil, location=nil, time=nil, feature=nil)
+  def initialize(name:, location:, time:, feature:)
     @name = name
     @location = location
     @time = time
@@ -32,7 +32,7 @@ class Dcdrinks::HappyHour
     doc = Nokogiri::HTML(open("https://www.dchappyhours.com/#{@happyhour_for_day}"))  #this changes based off selected day
     happyhours = doc.css(".card-block")
 
-    happyhours.each do |details|
+    happyhours.collect do |details|
       if details.css("p.card-text").text.include?("Happy Hour")
 
         happyhour_hash = {
