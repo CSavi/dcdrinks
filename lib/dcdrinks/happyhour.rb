@@ -10,6 +10,10 @@ class Dcdrinks::HappyHour
     @feature = feature
   end
 
+  urls = [
+
+  ]
+
 
   # def self.day_selector(selected_day) # 1-7
   #   @happyhours_for_day = selected_day
@@ -25,7 +29,7 @@ class Dcdrinks::HappyHour
   def self.scrape_dchappyhours  # => should i add url arg here?
     happyhour_array = []
 
-    doc = Nokogiri::HTML(open("https://www.dchappyhours.com/#{@happyhours_for_day}"))  #this changes based off selected day
+    doc = Nokogiri::HTML(open("https://www.dchappyhours.com/#{@happyhour_for_day}"))  #this changes based off selected day
     happyhours = doc.css(".card-block")
 
     happyhours.each do |details|
@@ -33,12 +37,12 @@ class Dcdrinks::HappyHour
 
         happyhour_hash = {
           :name => details.css("h2.card-title").text.strip,
-          :location => details.css("p.card-text").text.strip,
-          binding.pry
-          :time => details.css("p.card-text").text.strip, #"p.card-text span[1]"    #how to iterate the values for location, time, feature
+          :location => details.css("p.card-text span[1]").text.strip,
+          :time => details.css("p.card-text span[3]").text.strip,
           :feature => details.css("p.card-text span.hhlistingtext").text.strip
         }
         happyhour_array << happyhour_hash
+        #binding.pry
       end
     end
     happyhour_array
