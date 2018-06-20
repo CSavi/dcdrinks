@@ -1,7 +1,6 @@
 class Dcdrinks::HappyHour
 
-  attr_accessor :name, :location, :time, :feature #:day?
-#  BASE_PATH = "./dchappyhours.com/index.phtml?selectarea=&selectday"  => creates method for days' url?
+  attr_accessor :name, :location, :time, :feature
 
   def initialize(name:, location:, time:, feature:)
     @name = name
@@ -9,10 +8,6 @@ class Dcdrinks::HappyHour
     @time = time
     @feature = feature
   end
-
-  urls = [
-
-  ]
 
 
   def self.day_selector(selected_day)
@@ -46,7 +41,7 @@ class Dcdrinks::HappyHour
   def self.scrape_dchappyhours  # => should i add url arg here?
     happyhour_array = []
 
-    doc = Nokogiri::HTML(open("https://www.dchappyhours.com/index.phtml?selectarea=&selectday=/#{@happyhour_for_day}"))  #this changes based off selected day
+    doc = Nokogiri::HTML(open("https://www.dchappyhours.com/index.phtml?selectarea=&selectday=/#{@happyhours_for_day}"))  #this changes based off selected day
     happyhours = doc.css(".card-block")
 
     happyhours.collect do |details|
@@ -65,11 +60,4 @@ class Dcdrinks::HappyHour
     happyhour_array
     #happyhour = Dcdrinks::HappyHour.new  #create happyhour object
   end
-
-  # def self.scrape_individual_happyhour(weekday_url = https://www.dchappyhours.com/bussinfo.phtml?buss=634&uname=1331+Bar+%26+Lounge)
-  #   individual_happyhour_hash = {}
-  #   doc = Nokokgiri::HTML(open(weekday_url))
-  #   details = doc.css("")
-  #     details.each do |d|
-  #       sd = d.
 end
