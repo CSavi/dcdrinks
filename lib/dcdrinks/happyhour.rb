@@ -27,14 +27,18 @@ class Dcdrinks::HappyHour
 
     doc = Nokogiri::HTML(open("https://www.dchappyhours.com/#{@happyhours_for_day}"))  #this changes based off selected day
     happyhours = doc.css(".card-block")
+
     happyhours.each do |details|
-      happyhour_hash = {
-        :name => details.css("h2.card-title").text  #"h2.card-title a "
-        :location => details.css("p.card-text").text
-        :time => details.css("p.card-text").text #"p.card-text span[1]"    #how to iterate the values for location, time, feature 
-        :feature => details.css("p.card-text span.hhlistingtext").text
-      }
-      happyhour_array << happyhour_hash
+      if details.css("p.card-text").text.include?("Happy Hour")
+
+        happyhour_hash = {
+          :name => details.css("h2.card-title").text,  #"h2.card-title a "
+          :location => details.css("p.card-text").text,
+          :time => details.css("p.card-text").text, #"p.card-text span[1]"    #how to iterate the values for location, time, feature
+          :feature => details.css("p.card-text span.hhlistingtext").text
+        }
+        happyhour_array << happyhour_hash
+      end
     end
     happyhour_array
     #happyhour = Dcdrinks::HappyHour.new  #create happyhour object
