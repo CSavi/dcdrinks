@@ -12,19 +12,19 @@ class Dcdrinks::HappyHour
 
   def self.day_selector(selected_day)
     if selected_day == "1"
-      @happyhours_for_day = "Monday"
+      @happyhour_for_day = "Monday"
     elsif selected_day == "2"
-      @happyhours_for_day = "Tuesday"
+      @happyhour_for_day = "Tuesday"
     elsif selected_day == "3"
-      @happyhours_for_day = "Wednesday"
+      @happyhour_for_day = "Wednesday"
     elsif selected_day == "4"
-      @happyhours_for_day = "Thursday"
+      @happyhour_for_day = "Thursday"
     elsif selected_day == "5"
-      @happyhours_for_day = "Friday"
+      @happyhour_for_day = "Friday"
     elsif selected_day == "6"
-      @happyhours_for_day = "Saturday"
+      @happyhour_for_day = "Saturday"
     elsif selected_day == "7"
-      @happyhours_for_day = "Sunday"
+      @happyhour_for_day = "Sunday"
     end
   end
 

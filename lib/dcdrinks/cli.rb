@@ -26,20 +26,6 @@ class Dcdrinks::CLI
       if (input.to_i > 0) && (input.to_i < 9)
         the_happyhour = happyhour_day[input.to_i - 1] #set variable equal to output to scraper; set that to the_happyhour; @the_happyhour
         puts "#{the_happyhour[:name]} - #{the_happyhour[:location]} - #{the_happyhour[:time]} - #{the_happyhour[:feature]}"
-      elsif selected_day == "1"
-        puts "You selected Monday."
-      elsif selected_day == "2"
-        puts "You selected Tuesday."
-      elsif selected_day == "3"
-        puts "You selected Wednesday."
-      elsif selected_day == "4"
-        puts "You selected Thursday."
-      elsif selected_day == "5"
-        puts "You selected Friday."
-      elsif selected_day == "6"
-        puts "You selected Saturday."
-      elsif selected_day == "7"
-        puts "You selected Sunday."
       elsif input == "exit"
         break
       else
