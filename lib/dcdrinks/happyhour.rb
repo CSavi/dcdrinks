@@ -1,12 +1,12 @@
 class Dcdrinks::HappyHour
 
   attr_accessor :name, :location, :time, :feature
+  @@all = []
 
-  def initialize(name:, location:, time:, feature:)
-    @name = name
-    @location = location
-    @time = time
-    @feature = feature
+
+  def initialize(attributes)
+    attributes.each {|key, value| self.send(("#{key}="), value)}
+    @@all << self
   end
 
 
@@ -28,13 +28,17 @@ class Dcdrinks::HappyHour
     end
   end
 
-  #scrape dchappyhours.com and then return happyhours based on that data
-  def self.scrape_dchappyhours  # => should i add url arg here?
+
+  def self.create_dchappyhour
+    self.scrape_dchappyhours.each.with_index(1) {|hh, i| puts "#{i}. #{hh[:name]} - #{hh[:location].strip} - #{hh[:time].strip} - #{hh[:feature]}"}
+  end
+
+
+  def self.scrape_dchappyhours
     happyhour_array = []
 
     doc = Nokogiri::HTML(open("https://www.dchappyhours.com/index.phtml?selectarea=&selectday=/#{@happyhour_for_day}"))  #this changes based off selected day
     happyhours = doc.css(".card-block")
-
     happyhours.collect do |details|
       if details.css("p.card-text").text.include?("Happy Hour")
 
@@ -45,10 +49,8 @@ class Dcdrinks::HappyHour
           :feature => details.css("p.card-text span.hhlistingtext").text.strip
         }
         happyhour_array << happyhour_hash
-        #binding.pry
       end
     end
     happyhour_array
-    #happyhour = Dcdrinks::HappyHour.new  #create happyhour object
   end
 end
