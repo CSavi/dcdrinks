@@ -33,11 +33,10 @@ class Dcdrinks::HappyHour
     self.scrape_dchappyhours.each.with_index(1) {|hh, i| puts "#{i}. #{hh[:name]} - #{hh[:location].strip} - #{hh[:time].strip} - #{hh[:feature]}"}
   end
 
-
   def self.scrape_dchappyhours
     happyhour_array = []
 
-    doc = Nokogiri::HTML(open("https://www.dchappyhours.com/index.phtml?selectarea=&selectday=/#{@happyhour_for_day}"))  #this changes based off selected day
+    doc = Nokogiri::HTML(open("https://www.dchappyhours.com/index.phtml?selectarea=&selectday=#{@happyhour_for_day}"))  #this changes based off selected day
     happyhours = doc.css(".card-block")
     happyhours.collect do |details|
       if details.css("p.card-text").text.include?("Happy Hour")

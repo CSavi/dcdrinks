@@ -27,7 +27,7 @@ class Dcdrinks::CLI
 
       if (input.to_i > 0) && (input.to_i < 9)
         the_happyhour = Dcdrinks::HappyHour.create_dchappyhour[input.to_i - 1]
-        puts "#{the_happyhour[:name]} - #{the_happyhour[:location]} - #{the_happyhour[:time]} - #{the_happyhour[:feature]}"
+      #  puts "#{the_happyhour[:name]} - #{the_happyhour[:location]} - #{the_happyhour[:time]} - #{the_happyhour[:feature]}"
       elsif input == "exit"
         break
       else
