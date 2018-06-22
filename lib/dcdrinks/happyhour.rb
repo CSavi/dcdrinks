@@ -11,7 +11,6 @@ class Dcdrinks::HappyHour
 
 
   def self.day_selector(selected_day)
-    #binding.pry
     if selected_day == "1"
       @happyhour_for_day = "Monday"
     elsif selected_day == "2"
@@ -27,7 +26,6 @@ class Dcdrinks::HappyHour
     elsif selected_day == "7"
       @happyhour_for_day = "Sunday"
     end
-    #binding.pry
   end
 
 
