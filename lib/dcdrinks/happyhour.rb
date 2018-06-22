@@ -10,7 +10,7 @@ class Dcdrinks::HappyHour
   end
 
 
-  def self.day_selector(selected_day)
+  def day_selector(selected_day)
     if selected_day == "1"
       @happyhour_for_day = "Monday"
     elsif selected_day == "2"
@@ -32,6 +32,10 @@ class Dcdrinks::HappyHour
   def self.create_dchappyhour
     self.scrape_dchappyhours.each.with_index(1) {|hh, i| puts "#{i}. #{hh[:name]} - #{hh[:location].strip} - #{hh[:time].strip} - #{hh[:feature]}"}
   end
+
+  # def self.find(day)
+  #   self.all[day - 1]
+  # end
 
   def self.scrape_dchappyhours
     happyhour_array = []

@@ -17,10 +17,9 @@ Show a list of happy hours and added details for that day:
   2. Blue Duck Tavern - Logan Circle, NW - 3-4:30pm - $5 cocktails - url
 
 
-What is a happy hour (venue)?
+What is a happy hour?
 
 1. HH has a name
 2. HH has a location
 3. HH has a time
 4. HH has a feature
-5. HH has a url
