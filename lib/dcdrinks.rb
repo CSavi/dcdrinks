@@ -1,5 +1,6 @@
 require "open-uri"
 require "nokogiri"
+require "gem-release"
 require "pry"
 require_relative "./dcdrinks/version"
 require_relative "./dcdrinks/cli"
