@@ -1,6 +1,6 @@
 class Dcdrinks::HappyHour
 
-  attr_accessor :name, :location, :time, :feature
+  attr_accessor :name, :location, :time, :feature, :day
   @@all = []
 
 
@@ -10,7 +10,8 @@ class Dcdrinks::HappyHour
   end
 
 
-  def day_selector(selected_day)
+  def self.day_selector(selected_day)
+    #binding.pry
     if selected_day == "1"
       @happyhour_for_day = "Monday"
     elsif selected_day == "2"
@@ -26,6 +27,7 @@ class Dcdrinks::HappyHour
     elsif selected_day == "7"
       @happyhour_for_day = "Sunday"
     end
+    #binding.pry
   end
 
 
@@ -33,14 +35,11 @@ class Dcdrinks::HappyHour
     self.scrape_dchappyhours.each.with_index(1) {|hh, i| puts "#{i}. #{hh[:name]} - #{hh[:location].strip} - #{hh[:time].strip} - #{hh[:feature]}"}
   end
 
-  # def self.find(day)
-  #   self.all[day - 1]
-  # end
 
   def self.scrape_dchappyhours
     happyhour_array = []
 
-    doc = Nokogiri::HTML(open("https://www.dchappyhours.com/index.phtml?selectarea=&selectday=#{@happyhour_for_day}"))  #this changes based off selected day
+    doc = Nokogiri::HTML(open("https://www.dchappyhours.com/index.phtml?selectarea=&selectday=#{@happyhour_for_day}"))
     happyhours = doc.css(".card-block")
     happyhours.collect do |details|
       if details.css("p.card-text").text.include?("Happy Hour")

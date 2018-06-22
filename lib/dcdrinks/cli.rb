@@ -9,7 +9,7 @@ class Dcdrinks::CLI
 
 
   def list_days
-    puts "Enter the number of the day for a list of happy hours or type exit."
+    # puts "Enter the number of the day for a list of happy hours or type exit."
     puts "********** Monday(1) **********"
     puts "********** Tuesday(2) **********"
     puts "********** Wednesday(3) **********"
@@ -23,10 +23,14 @@ class Dcdrinks::CLI
   def list_happyhours
     input = nil
     while input != "exit"
+      puts "Enter the number of the day for a list of happy hours or type exit."
       input = gets.strip
 
       if (input.to_i > 0) && (input.to_i < 9)
-        the_happyhour = Dcdrinks::HappyHour.create_dchappyhour[input.to_i]  #use .find method here?
+        Dcdrinks::HappyHour.day_selector(input)
+        the_happyhour = Dcdrinks::HappyHour.create_dchappyhour[input.to_i - 1]
+      #  the_happyhour = Dcdrinks::HappyHour.find(input.to_i - 1)
+      #  binding.pry
       #  puts "#{the_happyhour[:name]} - #{the_happyhour[:location]} - #{the_happyhour[:time]} - #{the_happyhour[:feature]}"
       elsif input == "exit"
         break
