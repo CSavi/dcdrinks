@@ -55,7 +55,7 @@ class Dcdrinks::HappyHour
     happyhour_array
   end
 
-  
+
 
 
   def self.create_dchappyhour
