@@ -1,10 +1,7 @@
-
-
 class Dcdrinks::Scraper
 
-  def self.scrape_happyhours(day)
-    #happyhour_array = []
 
+  def self.scrape_happyhours(day)
     doc = Nokogiri::HTML(open("https://www.dchappyhours.com/index.phtml?selectarea=&selectday=#{day}"))
     happyhours = doc.css(".card-block")
     happyhours.collect do |details|
@@ -17,9 +14,7 @@ class Dcdrinks::Scraper
           :feature => details.css("p.card-text span.hhlistingtext").text.strip
         }
         Dcdrinks::HappyHour.new(happyhour_hash)
-        #happyhour_array << happyhour_hash
       end
     end
   end
-
 end

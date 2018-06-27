@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 require "bundler/setup"
 require_relative "../lib/dcdrinks/"
-#require "dcdrinks"
+
 
 Dcdrinks::CLI.new.call
-
-#my app code

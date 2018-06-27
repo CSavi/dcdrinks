@@ -9,6 +9,7 @@ class Dcdrinks::HappyHour
     @@all << self
   end
 
+
   def self.all
     @@all
   end
@@ -32,8 +33,9 @@ class Dcdrinks::HappyHour
     end
   end
 
+
   def self.find_by_location(location_string)
-    #this method will return an array of happy hour objects that include the location we pass in
+    #this method will return an array of happy hour objects that include the location passed in
     hh_location_array = []
     self.all.each do |hh|
       if hh.location.include?(location_string)
@@ -43,9 +45,10 @@ class Dcdrinks::HappyHour
     hh_location_array
   end
 
+
   def self.find_by_name(name)
     #this method will return an array of happy hour objects that include the name we pass in
-    #temp array
+    #temp_array = []
     happyhour_array = []
     self.all.each do |hh|
       if hh.name.include?(name)
@@ -56,32 +59,8 @@ class Dcdrinks::HappyHour
   end
 
 
-
-
   def self.create_dchappyhour
     @@all = []
     Dcdrinks::Scraper.scrape_happyhours(@happyhour_for_day)
-    #self.scrape_dchappyhours.each.with_index(1) {|hh, i| puts "#{i}. #{hh[:name]} - #{hh[:location].strip} - #{hh[:time].strip} - #{hh[:feature]}"}
   end
-
-
-  # def self.scrape_dchappyhours
-  #   happyhour_array = []
-  #
-  #   doc = Nokogiri::HTML(open("https://www.dchappyhours.com/index.phtml?selectarea=&selectday=#{@happyhour_for_day}"))
-  #   happyhours = doc.css(".card-block")
-  #   happyhours.collect do |details|
-  #     if details.css("p.card-text").text.include?("Happy Hour")
-  #
-  #       happyhour_hash = {
-  #         :name => details.css("h2.card-title").text.strip,
-  #         :location => details.css("p.card-text span[1]").text.strip,
-  #         :time => details.css("p.card-text span[3]").text.strip,
-  #         :feature => details.css("p.card-text span.hhlistingtext").text.strip
-  #       }
-  #       happyhour_array << happyhour_hash
-  #     end
-  #   end
-  #   happyhour_array
-  # end
 end

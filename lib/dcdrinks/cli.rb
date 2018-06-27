@@ -28,7 +28,6 @@ class Dcdrinks::CLI
       if (input.to_i > 0) && (input.to_i < 9)
         Dcdrinks::HappyHour.day_selector(input)
         the_happyhour = Dcdrinks::HappyHour.create_dchappyhour[input.to_i - 1]
-  #      binding.pry
         happy_hours = Dcdrinks::HappyHour.all
         display_happyhours(happy_hours)
       elsif input == "exit"
@@ -40,6 +39,7 @@ class Dcdrinks::CLI
       end
     end
   end
+
 
   def display_happyhours(happy_hours)
     happy_hours.each.with_index(1) do |hh, i|
