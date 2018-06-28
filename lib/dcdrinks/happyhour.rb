@@ -33,29 +33,15 @@ class Dcdrinks::HappyHour
     end
   end
 
-
+  #this method will return an array of happy hour objects that include the location passed in
+  #select will return a new array that contains all the objects where the block inside is a true statement
   def self.find_by_location(location_string)
-    #this method will return an array of happy hour objects that include the location passed in
-    hh_location_array = []
-    self.all.each do |hh|
-      if hh.location.include?(location_string)
-        hh_location_array << hh
-      end
-    end
-    hh_location_array
+    self.all.select {|hh| hh.location.include?(location_string)}
   end
 
-
+  #this method will return an array of happy hour objects that include the name we pass in
   def self.find_by_name(name)
-    #this method will return an array of happy hour objects that include the name we pass in
-    #temp_array = []
-    happyhour_array = []
-    self.all.each do |hh|
-      if hh.name.include?(name)
-        happyhour_array << hh
-      end
-    end
-    happyhour_array
+    self.all.select {|hh| hh.name.include?(name)}
   end
 
 
